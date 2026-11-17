@@ -1,13 +1,10 @@
 import { useState } from "react"
-import { useNavigate } from "react-router-dom"
 
 function BookCard({books, handleDelete, handleEdit}) {
-    const navigate = useNavigate()
     const [isEditing, setIsEditing] = useState(false)
     const [price, setPrice] = useState(books.price)
     const handleSave =async () => {
         await handleEdit(books.id, price)
-        navigate('/')
         setIsEditing(false)
     }
 

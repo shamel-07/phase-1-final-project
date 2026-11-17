@@ -4,6 +4,8 @@ import BookCard from "./BookCard"
 
 function BooksList() {
     const [book, setBook] = useState([])
+    const [searchTerm, setSearchTerm] = useState("")
+    const [searchBy, setSearchBy] = useState("name")
     const bookFetch = async () => {
         try {
             const response = await axios.get("https://6afb5186730c1d152f337677.mockapi.io/api/v1/books")
@@ -28,7 +30,7 @@ function BooksList() {
                 `https://6afb5186730c1d152f337677.mockapi.io/api/v1/books/${id}`,
                 {price}
             )
-            setBook(book.map((item)=> {
+            return setBook(book.map((item)=> {
                 item.id === id ? response.data : item
             }))
         } catch (error) {
@@ -38,14 +40,37 @@ function BooksList() {
     useEffect(() => {
         bookFetch();
     }, []);
+    const filteredProducts = book.filter((item) =>
+        String(item[searchBy]).toLowerCase().includes(searchTerm.toLowerCase())
+    )
     return (
         <div>
-            {book.map((books) => (
-                <BookCard key={books.id} books={books}
-                handleDelete={handleDelete}
-                handleEdit={handleEdit}
-                />
-            ))}
+            <select value={searchBy} onChange={(e) => setSearchBy(e.target.value)}>
+                <option value="name">Name</option>
+                <option value="price">Price</option>
+                <option value="id">ID</option>
+            </select>
+
+            <input
+                type="text"
+                placeholder={`Search by ${searchBy}...`}
+                value={searchTerm}
+                onChange={(e) => setSearchTerm(e.target.value)}
+            />
+
+            {filteredProducts.length === 0 ? (
+                <p>No products found</p>
+            ) : (
+                filteredProducts.map((books) => (
+                    <BookCard
+                        key={books.id}
+                        books={books}
+                        handleDelete={handleDelete}
+                        handleEdit={handleEdit}
+                    />
+                    
+                ))
+            )}
         </div>
     )
 }
