@@ -12,6 +12,29 @@ function BooksList() {
             console.log(error, "error from fetching data");
         }
     }
+    const handleDelete = async (id) => {
+        try {
+            await axios.delete(
+                `https://6afb5186730c1d152f337677.mockapi.io/api/v1/books/${id}`
+            )
+            setBook(book.filter((item) => item.id !== id))
+        } catch (error) {
+            console.log(error, "error from deleting the book")
+        }
+    }
+    const handleEdit = async (id, price) => {
+        try {
+            const response =await axios.put(
+                `https://6afb5186730c1d152f337677.mockapi.io/api/v1/books/${id}`,
+                {price}
+            )
+            setBook(book.map((item)=> {
+                item.id === id ? response.data : item
+            }))
+        } catch (error) {
+            console.log(error, "error from updating the book")
+        }
+    }
     useEffect(() => {
         bookFetch();
     }, []);
@@ -19,6 +42,8 @@ function BooksList() {
         <div>
             {book.map((books) => (
                 <BookCard key={books.id} books={books}
+                handleDelete={handleDelete}
+                handleEdit={handleEdit}
                 />
             ))}
         </div>
