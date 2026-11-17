@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react"
 import axios from 'axios'
 import BookCard from "./BookCard"
+import { toast } from '@yusufceng1z/ding-react'
 
 function BooksList() {
     const [book, setBook] = useState([])
@@ -20,6 +21,7 @@ function BooksList() {
                 `https://6afb5186730c1d152f337677.mockapi.io/api/v1/books/${id}`
             )
             setBook(book.filter((item) => item.id !== id))
+            toast.success('Book deleted')
         } catch (error) {
             console.log(error, "error from deleting the book")
         }
@@ -30,9 +32,10 @@ function BooksList() {
                 `https://6afb5186730c1d152f337677.mockapi.io/api/v1/books/${id}`,
                 {price}
             )
-            return setBook(book.map((item)=> {
+            setBook(book.map((item)=> 
                 item.id === id ? response.data : item
-            }))
+            ))
+            toast.success('Price edited')
         } catch (error) {
             console.log(error, "error from updating the book")
         }

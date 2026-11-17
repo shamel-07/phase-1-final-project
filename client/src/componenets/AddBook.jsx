@@ -1,9 +1,10 @@
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import axios from 'axios'
+import { toast } from '@yusufceng1z/ding-react'
 
 const API_URL =
- "https://6afb5186730c1d152f337677.mockapi.io/api/v1/books"
+  "https://6afb5186730c1d152f337677.mockapi.io/api/v1/books"
 
 function AddBook() {
   const navigate = useNavigate()
@@ -19,8 +20,8 @@ function AddBook() {
     contact: '',
     creator: '',
     language: '',
-    creatorDescription: '',
-    bookDescription: '',
+    creatorDesc: '',
+    bookDesc: '',
   })
 
   const [submitting, setSubmitting] = useState(false)
@@ -38,7 +39,9 @@ function AddBook() {
 
     try {
       await axios.post(API_URL, formData)
+      toast.success('Product created')
       navigate('/')
+      
     } catch (err) {
       setError('Please try again Cannot add book.')
       setSubmitting(false)
@@ -55,6 +58,7 @@ function AddBook() {
           <input
             type="text"
             name="name"
+            placeholder='name'
             value={formData.name}
             onChange={handleChange}
             required
@@ -64,8 +68,9 @@ function AddBook() {
         <label>
           Date
           <input
-            type="text"
+            type="date"
             name="date"
+            placeholder='date'
             value={formData.date}
             onChange={handleChange}
             required
@@ -77,6 +82,7 @@ function AddBook() {
           <input
             type="url"
             name="avatar"
+            placeholder='your avatar..'
             value={formData.avatar}
             onChange={handleChange}
             required
@@ -88,105 +94,103 @@ function AddBook() {
           <textarea
             name="description"
             value={formData.description}
+            placeholder="What's the book about?"
             onChange={handleChange}
             required
           />
         </label>
 
-         <label>
-          Avatar
-          <input
-            type="url"
-            name="avatar"
-            value={formData.avatar}
-            onChange={handleChange}
-            required
-          />
-        </label>
-
-         <label>
+        <label>
           Price
           <input
             type="number"
             name="price"
+            placeholder='price'
             value={formData.price}
             onChange={handleChange}
             required
           />
         </label>
 
-         <label>
+        <label>
           image
           <input
             type="url"
-            name="coverimage"
-            value={formData.avatar}
+            name="image"
+            placeholder='Book cover..'
+            value={formData.image}
             onChange={handleChange}
             required
           />
         </label>
 
-         <label>
+        <label>
           Rating
           <input
             type="number"
             name="rating"
+            placeholder='?/5'
             value={formData.rating}
             onChange={handleChange}
             required
           />
         </label>
 
-          <label>
+        <label>
           Contact
           <input
             type="text"
-            name="rating"
+            name="contact"
+            placeholder='abc123@example.com'
             value={formData.contact}
             onChange={handleChange}
             required
           />
         </label>
 
-          <label>
+        <label>
           Creator
           <input
-            type="url"
+            type="text"
             name="creator"
+            placeholder='creator'
             value={formData.creator}
             onChange={handleChange}
             required
           />
         </label>
 
-          <label>
+        <label>
           Language
           <input
             type="text"
             name="language"
+            placeholder='language'
             value={formData.language}
             onChange={handleChange}
             required
           />
         </label>
 
-          <label>
-          CreatorDescription
+        <label>
+          Creator Description
           <input
             type="text"
-            name="creatordescription"
-            value={formData.creatordescription}
+            name="creatorDesc"
+            placeholder='who is the creator'
+            value={formData.creatorDesc}
             onChange={handleChange}
             required
           />
         </label>
 
-          <label>
-          bookdescription
+        <label>
+          Book Description
           <input
             type="text"
-            name="bookdescription"
-            value={formData.bookdescription}
+            name="bookDesc"
+            placeholder='Book description...'
+            value={formData.bookDesc}
             onChange={handleChange}
             required
           />
