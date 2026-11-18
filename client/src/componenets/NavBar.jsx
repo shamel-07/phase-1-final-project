@@ -5,11 +5,11 @@ function NavBar() {
     return (
         <div className='navbar'>
             <Link className='nav-link' to="/">
-                <House size={20} /> 
+                <House size={21} /> 
             </Link>
             <Link className='nav-link' to="/create"></Link>
             <button className='nav-link' aria-label="Settings">
-                <BookOpen size={20} />
+                <BookOpen size={21} />
             </button>
         </div>
     )
