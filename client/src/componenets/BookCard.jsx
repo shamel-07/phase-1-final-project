@@ -13,12 +13,6 @@ function BookCard({books}) {
             <p>{books.contact}</p>
             <img src={books.image} alt={books.name} />
             <img src={books.avatar} alt="avatar" />        
-          <button
-            className="More infos click on me "
-            onClick={() => onClick(books.description)}
-          >
-            Click Me
-          </button>
         </div>
     )
 }
