@@ -1,6 +1,7 @@
 import AddBook from "./componenets/AddBook"
 import NavBar from "./componenets/NavBar"
-import BooksList from "./componenets/booksList"
+import BooksList from "./componenets/BooksList"
+import BookDetails from "./componenets/BookDetails"
 import { Route, Routes } from "react-router-dom"
 import { Toaster, toast } from '@yusufceng1z/ding-react';
 toast.configure({ sound: true, volume: 0.5 })
@@ -15,6 +16,7 @@ function App() {
       <Routes>
         <Route path="/" element={<BooksList/>} />
         <Route path="/create" element={<AddBook/>} />
+        <Route path='/book/:id' element= {<BookDetails/>} />
       </Routes>
     </div>
   )

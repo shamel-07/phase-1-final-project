@@ -22,6 +22,7 @@ function AddBook() {
     language: '',
     creatorDesc: '',
     bookDesc: '',
+    category: '',
   })
 
   const [submitting, setSubmitting] = useState(false)
@@ -179,6 +180,18 @@ function AddBook() {
             name="creatorDesc"
             placeholder='who is the creator'
             value={formData.creatorDesc}
+            onChange={handleChange}
+            required
+          />
+        </label>
+
+        <label>
+          Category
+          <input
+            type="text"
+            name="category"
+            placeholder='Category'
+            value={formData.category}
             onChange={handleChange}
             required
           />

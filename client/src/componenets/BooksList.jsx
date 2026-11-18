@@ -7,6 +7,7 @@ function BooksList() {
     const [book, setBook] = useState([])
     const [searchTerm, setSearchTerm] = useState("")
     const [searchBy, setSearchBy] = useState("name")
+    const [category, setCategory] = useState("")
     const bookFetch = async () => {
         try {
             const response = await axios.get("https://6afb5186730c1d152f337677.mockapi.io/api/v1/books")
@@ -28,11 +29,11 @@ function BooksList() {
     }
     const handleEdit = async (id, price) => {
         try {
-            const response =await axios.put(
+            const response = await axios.put(
                 `https://6afb5186730c1d152f337677.mockapi.io/api/v1/books/${id}`,
-                {price}
+                { price }
             )
-            setBook(book.map((item)=> 
+            setBook(book.map((item) =>
                 item.id === id ? response.data : item
             ))
             toast.success('Price edited')
@@ -40,18 +41,35 @@ function BooksList() {
             console.log(error, "error from updating the book")
         }
     }
-    useEffect(() => {
+    
+    const filteredProducts = book.filter((item) => {
+    const matchesSearch = String(item[searchBy])
+        .toLowerCase()
+        .includes(searchTerm.toLowerCase())
+
+    const matchesCategory = category === "" || item.category === category
+
+    return matchesSearch && matchesCategory
+})
+useEffect(() => {
         bookFetch();
     }, []);
-    const filteredProducts = book.filter((item) =>
-        String(item[searchBy]).toLowerCase().includes(searchTerm.toLowerCase())
-    )
     return (
         <div>
             <select value={searchBy} onChange={(e) => setSearchBy(e.target.value)}>
                 <option value="name">Name</option>
                 <option value="price">Price</option>
                 <option value="id">ID</option>
+            </select>
+            <select value={category} onChange={(e) => setCategory(e.target.value)}>
+                <option value="">All categories</option>
+                <option value="Personal Development">Personal Development</option>
+                <option value="Romance">Romance</option>
+                <option value="Philosophy">Philosophy</option>
+                <option value="Sociology">Sociology</option>
+                <option value="Thriller">Thriller</option>
+                <option value="Islamic">Islamic</option>
+                <option value="Leadership">Leadership</option>
             </select>
 
             <input
@@ -71,7 +89,7 @@ function BooksList() {
                         handleDelete={handleDelete}
                         handleEdit={handleEdit}
                     />
-                    
+
                 ))
             )}
         </div>

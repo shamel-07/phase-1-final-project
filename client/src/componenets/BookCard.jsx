@@ -1,4 +1,5 @@
 import { useState } from "react"
+import { Link } from "react-router-dom"
 
 function BookCard({ books, handleDelete, handleEdit }) {
     const [isEditing, setIsEditing] = useState(false)
@@ -15,18 +16,21 @@ function BookCard({ books, handleDelete, handleEdit }) {
 
     return (
         <div>
-            <h1>{books.name}</h1>
+            {books.name && (
+                <Link to={`/book/${books.id}`}>{books.name}</Link>
+            )}
             <h3>{books.creator}</h3>
             <p>{books.id}</p>
             <p>{books.description}</p>
             <p>{books.date}</p>
             <p>{books.rating}</p>
-            <p>{books.contact}</p>
-            <p>{books.language}</p>
-            <p>{books.bookDesc}</p>
-            <p>{books.creatorDesc}</p>
+            <p>{books.category}</p>
+            {/* <p>{books.contact}</p>
+            <p>{books.language}</p> */}
+            {/* <p>{books.bookDesc}</p> */}
+            {/* <p>{books.creatorDesc}</p> */}
             {books.image && <img src={books.image} alt={books.name} />}
-            {books.avatar && <img src={books.avatar} alt="avatar" />}
+            {/* {books.avatar && <img src={books.avatar} alt="avatar" />} */}
             {isEditing ? (
                 <>
                     <textarea
