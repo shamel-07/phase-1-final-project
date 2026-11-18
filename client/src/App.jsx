@@ -18,6 +18,7 @@ function App() {
         <Route path="/create" element={<AddBook/>} />
         <Route path='/book/:id' element= {<BookDetails/>} />
       </Routes>
+      
     </div>
   )
 }

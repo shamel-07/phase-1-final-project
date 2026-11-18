@@ -12,6 +12,7 @@
   "dependencies": {
     "@yusufceng1z/ding-react": "^0.0.7",
     "axios": "^1.21.1",
+    "lucide-react": "^1.75.0",
     "react": "^19.3.1",
     "react-dom": "^19.3.1",
     "react-router-dom": "^7.18.5"
