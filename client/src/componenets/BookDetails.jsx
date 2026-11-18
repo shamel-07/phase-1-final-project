@@ -1,11 +1,13 @@
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import axios from "axios";
+import { toast } from "@yusufceng1z/ding-react";
 
 const BookDetails = () => {
     const { id } = useParams();
     const [details, setDetails] = useState(null);
-    const [isLoading, setIsLoading] = useState(true);
+    const [isLoading, setIsLoading] = useState(true)
+    const navigate = useNavigate();
     const fetchData = async () => {
         try {
             setIsLoading(true);
@@ -24,6 +26,20 @@ const BookDetails = () => {
         fetchData();
     }, [id]);
 
+    const handleSave = async () => {
+    try {
+        await axios.put(
+            `https://6afb5186730c1d152f337677.mockapi.io/api/v1/books/${id}`,
+            { saved: true }
+        );
+        toast.success("Book saved");
+        navigate("/saved");
+    } catch (error) {
+        console.log(error, "error from saving the book");
+    }
+};
+
+
     if (isLoading) {
         return <div>Loading...</div>;
     }
@@ -33,7 +49,7 @@ const BookDetails = () => {
     }
 
 
-return (
+    return (
         <div className="details">
             {details.image && (
                 <img className="details-cover" src={details.image} alt={details.name} />
@@ -51,21 +67,22 @@ return (
                 <span>Category: {details.category}</span>
                 <span>Date: {details.date}</span>
                 <span>language: {details.language}</span>
-          
+
             </div>
 
-                 <img className="avatar" src={details.avatar} alt={details.avatar} />
-                <p>Description:{details.description}</p>
-                <p>Price:{details.price}</p>
-                <p>Rating:{details.rating}</p>
-                <h1>Contact:{details.contact}</h1>
-                <img className="avatar" src={details.creator} alt={details.creator} />
-                <h2>createDesc:{details.creatorDesc}</h2>
-                <h3>bookDesc:{details.bookDesc}</h3>
+            <img className="avatar" src={details.avatar} alt={details.avatar} />
+            <p>Description:{details.description}</p>
+            <p>Price:{details.price}</p>
+            <p>Rating:{details.rating}</p>
+            <h1>Contact:{details.contact}</h1>
+            <img className="avatar" src={details.creator} alt={details.creator} />
+            <h2>createDesc:{details.creatorDesc}</h2>
+            <h3>bookDesc:{details.bookDesc}</h3>
 
 
             <p className="details-content">{details.creatorDesc}</p>
             <article>{details.bookDesc}</article>
+            <button onClick={handleSave}>Save</button>
         </div>
     )
 }
