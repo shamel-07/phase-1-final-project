@@ -40,7 +40,7 @@ function AddBook() {
 
     try {
       await axios.post(API_URL, formData)
-      toast.success('Product created')
+      toast.success('Book created')
       navigate('/')
       
     } catch (err) {
@@ -90,7 +90,7 @@ function AddBook() {
           />
         </label>
 
-        <label>
+        <label className='full'>
           Description
           <textarea
             name="description"
@@ -173,7 +173,7 @@ function AddBook() {
           />
         </label>
 
-        <label>
+        <label className='full'>
           Creator Description
           <input
             type="text"
@@ -197,7 +197,7 @@ function AddBook() {
           />
         </label>
 
-        <label>
+        <label className='full'>
           Book Description
           <input
             type="text"
