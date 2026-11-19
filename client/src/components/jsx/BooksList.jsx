@@ -3,6 +3,7 @@ import axios from 'axios'
 import BookCard from "./BookCard"
 import { toast } from '@yusufceng1z/ding-react'
 import { Search } from "lucide-react"
+import "../css/BookList.css"
 
 function BooksList() {
     const [book, setBook] = useState([])
@@ -42,17 +43,17 @@ function BooksList() {
             console.log(error, "error from updating the book")
         }
     }
-    
+
     const filteredProducts = book.filter((item) => {
-    const matchesSearch = String(item[searchBy])
-        .toLowerCase()
-        .includes(searchTerm.toLowerCase())
+        const matchesSearch = String(item[searchBy])
+            .toLowerCase()
+            .includes(searchTerm.toLowerCase())
 
-    const matchesCategory = category === "" || item.category === category
+        const matchesCategory = category === "" || item.category === category
 
-    return matchesSearch && matchesCategory
-})
-useEffect(() => {
+        return matchesSearch && matchesCategory
+    })
+    useEffect(() => {
         bookFetch();
     }, []);
     return (
@@ -87,7 +88,11 @@ useEffect(() => {
                     <option value="Leadership">Leadership</option>
                 </select>
             </div>
-
+            {/* ----------video------------ */}
+            <section className="promo">
+                <video src="/library.mp4" controls muted loop playsInline />
+            </section>
+            {/* --------------------------- */}
             {filteredProducts.length === 0 ? (
                 <p className="empty">No books found</p>
             ) : (
