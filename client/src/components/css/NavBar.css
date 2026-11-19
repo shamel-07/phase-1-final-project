@@ -1,0 +1,28 @@
+.navbar {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  width: 64px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;    
+  padding: 30;
+  position: fixed;
+
+}
+
+.nav-link {
+    display: grid;
+    place-items: center;
+    width: 44px;
+    height: 44px;
+    border-radius: 12px;
+    color: #14161f;
+    transition: background 0.2s;
+}
+
+.nav-link:hover {
+    background: rgba(20, 22, 31, 0.07);
+}

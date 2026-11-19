@@ -2,6 +2,7 @@ import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import axios from 'axios'
 import { toast } from '@yusufceng1z/ding-react'
+import "../css/AddBook.css"
 
 const API_URL =
   "https://6afb5186730c1d152f337677.mockapi.io/api/v1/books"
