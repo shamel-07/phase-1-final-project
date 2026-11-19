@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom"
 import { BookOpen, House, Bookmark } from "lucide-react"
-import "../css/Navbar.css"
+import "../css/NavBar.css"
 
 function NavBar() {
     return (
