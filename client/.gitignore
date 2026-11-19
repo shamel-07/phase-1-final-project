@@ -11,8 +11,7 @@ node_modules
 dist
 dist-ssr
 *.local
-package-lock.json
-
+package-lock.json"public/library.mp4"
 # Editor directories and files
 .vscode/*
 !.vscode/extensions.json
@@ -23,3 +22,4 @@ package-lock.json
 *.njsproj
 *.sln
 *.sw?
+public/library.mp4

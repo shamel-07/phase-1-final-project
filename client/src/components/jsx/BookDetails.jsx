@@ -3,6 +3,7 @@ import { useParams, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { toast } from "@yusufceng1z/ding-react";
 import { Bookmark, Star } from "lucide-react";
+import "../css/BookDetails.css"
 
 const BookDetails = () => {
     const { id } = useParams();
