@@ -43,7 +43,7 @@ function AddBook() {
       await axios.post(API_URL, formData)
       toast.success('Book created')
       navigate('/')
-      
+
     } catch (err) {
       setError('Please try again Cannot add book.')
       setSubmitting(false)
@@ -208,6 +208,11 @@ function AddBook() {
             onChange={handleChange}
             required
           />
+        </label>
+        <label>
+          Stock (copies)
+          <input type="number" min="0" name="stock" placeholder="10"
+            value={formData.stock} onChange={handleChange} required />
         </label>
 
         {error && <p className="form-error">{error}</p>}
