@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
-import { useParams, useNavigate } from "react-router-dom";
+import { useParams, useNavigate, Link } from "react-router-dom";
 import axios from "axios";
 import { toast } from "@yusufceng1z/ding-react";
-import { Bookmark, Star } from "lucide-react";
+import { Bookmark, Star, Package } from "lucide-react";
 import "../css/BookDetails.css"
 
 const BookDetails = () => {
@@ -68,6 +68,9 @@ const BookDetails = () => {
                     <button className="save-btn" onClick={handleSave}>
                         <Bookmark size={15} /> Save book
                     </button>
+                    <Link className="save-btn" to={`/book/${id}/stock`}>
+                <Package size={15} /> Manage stock
+            </Link>
                     <span className="chip"><Star size={13} /> {details.rating}/5</span>
                     <span className="chip">{details.price} TND</span>
                 </div>

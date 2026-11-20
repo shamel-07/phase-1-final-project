@@ -190,6 +190,16 @@
     color: #6b6e7a;
 }
 
+.save-btn {
+    text-decoration: none;
+    background: #f1eee4;
+    color: #14161f;
+}
+
+.save-btn:hover {
+    background: #e6e1d3;
+    opacity: 1;
+}
 
 /* -------------------- */
 .promo {

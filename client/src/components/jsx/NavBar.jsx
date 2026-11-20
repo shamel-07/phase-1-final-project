@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom"
-import { BookOpen, House, Bookmark } from "lucide-react"
+import { BookOpen, House, Bookmark, LayoutDashboard } from "lucide-react"
 import "../css/NavBar.css"
 
 function NavBar() {
@@ -13,6 +13,9 @@ function NavBar() {
             </Link>
             <Link className='nav-link' to="/saved">
                 <Bookmark size={21} />
+            </Link>
+            <Link className='nav-link' to="/dashboard">
+                <LayoutDashboard size={21} />
             </Link>
         </div>
     )
